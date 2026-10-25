@@ -1,0 +1,714 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>TASWEEQ ميديا بلان قطر</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lalezar&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Inter:wght@800&display=swap">
+<style>
+/* Layout: one dark brand world (TASWEEQ), a sticky section rail, then a vertical run of plan sections; the pipeline + simulator is the one animated centrepiece. */
+:root{
+  --ink:#0B0D10; --panel:#12161B; --panel-2:#181E25; --line:#26303A;
+  --text:#EEF2F5; --muted:#9AA6B2; --dim:#6E7A86;
+  --cyan:#00D9F5; --cyan-soft:rgba(0,217,245,.12); --cyan-glow:rgba(0,217,245,.35);
+  --good:#3DDC97; --warn:#FFB547; --bad:#FF6B6B;
+  --display:"Lalezar","IBM Plex Sans Arabic",system-ui,sans-serif;
+  --body:"IBM Plex Sans Arabic",system-ui,sans-serif;
+  --latin:"Inter","IBM Plex Sans Arabic",system-ui,sans-serif;
+  --r:18px;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;direction:rtl}
+body{background:var(--ink);color:var(--text);font-family:var(--body);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--ink)}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.25;margin:0;text-wrap:balance}
+h2{font-size:clamp(30px,4.4vw,46px)}
+h3{font-size:24px}
+p{margin:0}
+.num{font-variant-numeric:tabular-nums}
+bdi{unicode-bidi:isolate}
+a{color:var(--cyan)}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:6px}
+
+/* rail */
+.rail{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(11,13,16,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.rail .wrap{display:flex;align-items:center;gap:20px;padding-block:12px}
+.logo{display:flex;align-items:center;gap:10px;direction:ltr;flex:none;text-decoration:none}
+.logo span{font-family:var(--latin);font-weight:800;font-size:19px;color:var(--text);line-height:1}
+.rail nav{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;min-width:0}
+.rail nav::-webkit-scrollbar{display:none}
+.rail nav a{flex:none;color:var(--muted);text-decoration:none;font-size:14px;font-weight:600;padding:6px 12px;border-radius:999px;transition:color .2s,background .2s}
+.rail nav a:hover,.rail nav a.on{color:var(--ink);background:var(--cyan)}
+
+section{padding-block:72px;border-bottom:1px solid var(--line)}
+.eyebrow{font-size:13px;font-weight:700;color:var(--cyan);letter-spacing:.02em;margin-bottom:10px;display:block}
+.lead{color:var(--muted);font-size:18px;max-width:62ch;margin-top:14px}
+.grid{display:grid;gap:16px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:22px;min-width:0}
+
+/* hero */
+.hero{padding-block:64px 56px;position:relative;overflow:hidden}
+.hero .ghost{position:absolute;inset-inline-start:-2%;top:30px;font-family:var(--display);font-size:clamp(120px,22vw,300px);line-height:1;color:transparent;-webkit-text-stroke:1.5px rgba(0,217,245,.09);white-space:nowrap;pointer-events:none;animation:drift 18s linear infinite alternate}
+@keyframes drift{to{transform:translateX(-6%)}}
+.hero h1{font-size:clamp(40px,7vw,84px);position:relative}
+.hero h1 em{font-style:normal;color:var(--cyan)}
+.hero .lead{position:relative}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:40px;position:relative}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;animation:rise .7s cubic-bezier(.2,.8,.2,1) both}
+.stat:nth-child(2){animation-delay:.08s}.stat:nth-child(3){animation-delay:.16s}.stat:nth-child(4){animation-delay:.24s}
+.stat b{display:block;font-family:var(--display);font-weight:400;font-size:clamp(30px,4vw,42px);color:var(--text);line-height:1.2}
+.stat b small{font-family:var(--body);font-size:15px;color:var(--muted);font-weight:600;margin-inline-start:4px}
+.stat span{font-size:14px;color:var(--muted)}
+.stat.hot{border-color:var(--cyan);background:linear-gradient(var(--cyan-soft),var(--cyan-soft)),var(--panel)}
+@keyframes rise{from{transform:translateY(14px)}to{transform:none}}
+
+/* insight */
+.compete{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:16px;margin-top:32px}
+.dots{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0 10px}
+.dot{width:34px;height:34px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center}
+.dot.wa{background:var(--cyan-soft);border-color:var(--cyan)}
+.dot svg{width:16px;height:16px}
+.range{position:relative;height:10px;background:var(--panel-2);border-radius:99px;margin:28px 0 8px}
+.range i{position:absolute;inset-block:0;inset-inline-start:22%;inset-inline-end:8%;background:linear-gradient(90deg,var(--cyan),rgba(0,217,245,.35));border-radius:99px}
+.range-l{display:flex;justify-content:space-between;font-size:13px;color:var(--muted)}
+.angles{grid-template-columns:repeat(4,minmax(0,1fr));margin-top:16px}
+.angle{position:relative;overflow:hidden;transition:transform .25s,border-color .25s}
+.angle:hover{transform:translateY(-4px);border-color:var(--cyan)}
+.angle .k{font-family:var(--latin);font-weight:800;font-size:13px;color:var(--ink);background:var(--cyan);border-radius:6px;padding:2px 8px;display:inline-block;margin-bottom:12px}
+.angle h3{font-size:22px}
+.angle q{display:block;quotes:none;color:var(--text);font-weight:600;margin-top:8px}
+.angle p{color:var(--muted);font-size:14px;margin-top:8px}
+
+/* pipeline */
+.camps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:32px}
+.camp{cursor:pointer;text-align:start;font:inherit;color:inherit;transition:border-color .25s,background .25s}
+.camp[aria-pressed="true"]{border-color:var(--cyan);background:linear-gradient(var(--cyan-soft),var(--cyan-soft)),var(--panel)}
+.camp .top{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.camp .top b{font-family:var(--display);font-weight:400;font-size:26px}
+.pill{font-size:12px;font-weight:700;padding:3px 10px;border-radius:99px;background:var(--panel-2);color:var(--muted);white-space:nowrap}
+.camp[aria-pressed="true"] .pill{background:var(--cyan);color:var(--ink)}
+.camp code{font-family:var(--latin);font-size:13px;color:var(--muted);direction:ltr;display:inline-block;margin-top:4px}
+.specs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:16px}
+.spec{background:var(--panel-2);border-radius:12px;padding:12px 14px;min-width:0}
+.spec small{display:block;color:var(--dim);font-size:12px;font-weight:600}
+.spec span{font-weight:600;font-size:14px}
+
+.pipe{display:grid;grid-template-columns:minmax(0,1fr) 56px minmax(0,1fr) 56px minmax(0,1fr) 56px minmax(0,1fr);align-items:center;margin-top:28px}
+.node{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:18px 16px;text-align:center;min-width:0}
+.node.wa{border-color:var(--cyan);box-shadow:0 0 0 0 var(--cyan-glow);animation:pulse 2.4s ease-out infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 var(--cyan-glow)}70%{box-shadow:0 0 0 14px rgba(0,217,245,0)}100%{box-shadow:0 0 0 0 rgba(0,217,245,0)}}
+.node .ic{width:40px;height:40px;margin:0 auto 8px;border-radius:12px;background:var(--panel-2);display:grid;place-items:center}
+.node.wa .ic{background:var(--cyan)}
+.node .ic svg{width:22px;height:22px}
+.node b{display:block;font-family:var(--display);font-weight:400;font-size:clamp(26px,3.2vw,36px);line-height:1.15}
+.node span{font-size:13px;color:var(--muted)}
+.link{height:2px;background:var(--line);position:relative;overflow:hidden;margin-inline:6px}
+.link::after{content:"";position:absolute;top:-3px;width:8px;height:8px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan);animation:flow 1.6s linear infinite;inset-inline-start:0}
+@keyframes flow{from{transform:translateX(0)}to{transform:translateX(-56px)}}
+.link.l2::after{animation-delay:.4s}.link.l3::after{animation-delay:.8s}
+
+/* simulator */
+.sim{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:16px;margin-top:32px}
+.ctrl{display:grid;gap:22px}
+.ctrl label{display:flex;justify-content:space-between;gap:12px;font-weight:600;font-size:15px}
+.ctrl label output{font-family:var(--display);font-weight:400;font-size:24px;color:var(--cyan);line-height:1}
+.ctrl .hint{font-size:12px;color:var(--dim);margin-top:4px}
+input[type=range]{width:100%;appearance:none;-webkit-appearance:none;height:6px;border-radius:99px;background:var(--panel-2);margin-top:12px;accent-color:var(--cyan)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--cyan);border:4px solid var(--ink);box-shadow:0 0 0 1px var(--cyan);cursor:pointer}
+input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--cyan);border:4px solid var(--ink);cursor:pointer}
+.out{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.o{background:var(--panel-2);border-radius:14px;padding:16px}
+.o small{color:var(--muted);font-size:13px;font-weight:600}
+.o b{display:block;font-family:var(--display);font-weight:400;font-size:34px;line-height:1.2}
+.verdict{grid-column:1/-1;display:flex;align-items:center;gap:12px;border-radius:14px;padding:14px 16px;font-weight:600;transition:background .3s,color .3s}
+.verdict i{width:12px;height:12px;border-radius:50%;flex:none;background:currentColor;box-shadow:0 0 12px currentColor}
+.verdict.good{background:rgba(61,220,151,.1);color:var(--good)}
+.verdict.warn{background:rgba(255,181,71,.1);color:var(--warn)}
+.verdict.bad{background:rgba(255,107,107,.1);color:var(--bad)}
+.reset{font:inherit;font-size:13px;font-weight:600;color:var(--muted);background:none;border:1px solid var(--line);border-radius:99px;padding:6px 14px;cursor:pointer;justify-self:start}
+.reset:hover{color:var(--text);border-color:var(--muted)}
+
+/* timeline */
+.tl{margin-top:32px}
+.bar{display:grid;grid-template-columns:7fr 23fr 30fr;gap:6px;height:64px}
+.seg{border-radius:12px;display:flex;flex-direction:column;justify-content:center;padding-inline:14px;min-width:0;overflow:hidden;position:relative}
+.seg b{font-size:14px;white-space:nowrap}
+.seg span{font-size:12px;opacity:.8;white-space:nowrap}
+.seg.s1{background:var(--panel-2);border:1px solid var(--line)}
+.seg.s2{background:var(--cyan);color:var(--ink)}
+.seg.s3{background:transparent;border:1.5px dashed var(--cyan);color:var(--cyan)}
+.seg.s2::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);transform:translateX(100%);animation:shine 3.2s ease-in-out infinite}
+@keyframes shine{to{transform:translateX(-100%)}}
+.days{display:grid;grid-template-columns:7fr 23fr 30fr;gap:6px;font-size:12px;color:var(--dim);margin-top:6px}
+.rules{grid-template-columns:repeat(3,minmax(0,1fr));margin-top:16px}
+.rules .card b{font-family:var(--display);font-weight:400;font-size:22px;display:block;margin-bottom:4px}
+.rules .card p{color:var(--muted);font-size:14px}
+
+/* audiences */
+.aud{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:32px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chip{font-size:13px;font-weight:600;border:1px solid var(--line);border-radius:99px;padding:5px 12px;color:var(--muted);transition:all .2s}
+.chip:hover{border-color:var(--cyan);color:var(--text)}
+.chip.x{text-decoration:line-through;text-decoration-color:var(--bad)}
+
+/* chat */
+.chatwrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;margin-top:32px;align-items:start}
+.phone{background:var(--panel);border:1px solid var(--line);border-radius:28px;padding:16px;max-width:420px;width:100%;justify-self:center}
+.phead{display:flex;align-items:center;gap:10px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.av{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--cyan);display:grid;place-items:center;flex:none}
+.phead b{font-family:var(--latin);font-weight:800;font-size:14px;display:block;direction:ltr;text-align:right}
+.phead small{color:var(--good);font-size:12px}
+.msgs{display:flex;flex-direction:column;gap:8px;padding-top:14px;min-height:420px}
+.m{max-width:84%;padding:10px 14px;border-radius:16px;font-size:14px;line-height:1.6;animation:pop .35s cubic-bezier(.2,.9,.3,1.3) both}
+.m.us{align-self:flex-start;background:var(--panel-2);border-end-start-radius:4px}
+.m.them{align-self:flex-end;background:var(--cyan-soft);border:1px solid rgba(0,217,245,.25);border-end-end-radius:4px}
+.m.sys{align-self:center;background:none;color:var(--dim);font-size:12px;padding:2px}
+.m .opts{display:flex;flex-direction:column;gap:6px;margin-top:8px}
+.m .opts span{border:1px solid var(--line);border-radius:10px;padding:5px 10px;font-size:13px;color:var(--cyan);text-align:center}
+@keyframes pop{from{transform:scale(.85);opacity:.3}to{transform:none;opacity:1}}
+.typing{align-self:flex-start;display:flex;gap:4px;padding:12px 14px;background:var(--panel-2);border-radius:16px}
+.typing i{width:6px;height:6px;border-radius:50%;background:var(--muted);animation:bounce 1s infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes bounce{0%,60%,100%{transform:none}30%{transform:translateY(-5px)}}
+.pctrl{display:flex;gap:8px;margin-top:12px}
+.btn{font:inherit;font-weight:700;font-size:14px;border:0;border-radius:99px;padding:10px 18px;cursor:pointer;background:var(--cyan);color:var(--ink);display:inline-flex;align-items:center;gap:8px}
+.btn.ghost{background:none;border:1px solid var(--line);color:var(--muted)}
+.steps{counter-reset:s;display:grid;gap:12px}
+.steps li{list-style:none;display:grid;grid-template-columns:36px minmax(0,1fr);gap:12px;align-items:start}
+.steps li::before{counter-increment:s;content:counter(s);font-family:var(--display);font-size:22px;color:var(--cyan);width:36px;height:36px;border:1px solid var(--line);border-radius:10px;display:grid;place-items:center;line-height:1}
+.steps ol{padding:0;margin:0}
+.qual{margin-top:20px;border:1px solid var(--cyan);background:var(--cyan-soft);border-radius:var(--r);padding:18px}
+.qual b{font-family:var(--display);font-weight:400;font-size:22px}
+.qual ul{margin:8px 0 0;padding-inline-start:18px;color:var(--text)}
+
+/* creatives */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-top:28px}
+.tab{font:inherit;font-weight:600;font-size:14px;border:1px solid var(--line);background:none;color:var(--muted);border-radius:99px;padding:7px 16px;cursor:pointer;transition:all .2s}
+.tab[aria-selected="true"]{background:var(--text);color:var(--ink);border-color:var(--text)}
+.ads{grid-template-columns:repeat(4,minmax(0,1fr));margin-top:16px}
+.ad{display:flex;flex-direction:column;gap:12px;transition:transform .25s,border-color .25s,opacity .3s}
+.ad:hover{transform:translateY(-4px);border-color:var(--cyan)}
+.ad.hide{display:none}
+.ad .h{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.ad .code{font-family:var(--latin);font-weight:800;font-size:15px;direction:ltr}
+.ad .fmt{font-size:12px;color:var(--muted);font-weight:600}
+.ad .prev{aspect-ratio:4/5;max-width:100%;border-radius:12px;background:var(--ink);border:1px solid var(--line);padding:16px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;position:relative}
+.ad .prev.sq{aspect-ratio:1/1}.ad .prev.st{aspect-ratio:9/16;max-height:380px;align-self:center;width:auto;height:380px}
+.ad .prev .t{font-family:var(--display);font-size:clamp(22px,2.6vw,30px);line-height:1.2}
+.ad .prev .t em{font-style:normal;color:var(--cyan)}
+.ad .prev .cta{align-self:flex-start;background:var(--cyan);color:var(--ink);font-family:var(--display);font-size:15px;border-radius:99px;padding:4px 14px}
+.ad .copy{font-size:14px;color:var(--text)}
+.ad .meta{display:flex;justify-content:space-between;gap:8px;font-size:12px;color:var(--dim);border-top:1px solid var(--line);padding-top:10px}
+.ad .meta .ok{color:var(--good)}
+.ad .hl{font-weight:700;font-size:14px}
+.ad .tag{font-size:11px;font-weight:700;border-radius:6px;padding:2px 8px;background:var(--panel-2);color:var(--muted)}
+.ad .tag.rt{background:rgba(255,181,71,.12);color:var(--warn)}
+
+/* kpi */
+.tbl{overflow-x:auto;margin-top:32px;border:1px solid var(--line);border-radius:var(--r)}
+table{width:100%;border-collapse:collapse;min-width:560px}
+th,td{padding:14px 18px;text-align:start;border-bottom:1px solid var(--line);font-size:15px}
+th{font-size:13px;color:var(--muted);font-weight:600;background:var(--panel)}
+tr:last-child td{border-bottom:0}
+tbody tr{transition:background .2s}
+tbody tr:hover{background:var(--panel)}
+td .g{color:var(--good);font-weight:700}td .b{color:var(--bad);font-weight:700}
+td.k{font-weight:700}
+.star td{background:var(--cyan-soft)}
+
+/* checklist */
+.check{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:28px}
+.ci{display:flex;gap:12px;align-items:flex-start;cursor:pointer;transition:border-color .2s}
+.ci input{appearance:none;-webkit-appearance:none;width:24px;height:24px;border:2px solid var(--line);border-radius:7px;flex:none;margin:2px 0 0;display:grid;place-items:center;cursor:pointer;transition:all .2s}
+.ci input:checked{background:var(--cyan);border-color:var(--cyan)}
+.ci input:checked::after{content:"";width:10px;height:5px;border:2.5px solid var(--ink);border-top:0;border-inline-end:0;transform:rotate(-45deg) translate(1px,-1px)}
+.ci.done{border-color:rgba(0,217,245,.4)}
+.ci.done .tx b{text-decoration:line-through;text-decoration-color:var(--cyan);color:var(--muted)}
+.ci .tx b{display:block;font-weight:700}
+.ci .tx small{color:var(--muted);font-size:13px}
+.ci .crit{font-size:11px;font-weight:700;color:var(--bad);background:rgba(255,107,107,.1);border-radius:6px;padding:1px 7px;margin-inline-start:6px}
+.progress{display:flex;align-items:center;gap:14px;margin-top:20px}
+.progress .tr{flex:1;height:8px;background:var(--panel-2);border-radius:99px;overflow:hidden}
+.progress .tr i{display:block;height:100%;width:0;background:var(--cyan);border-radius:99px;transition:width .5s cubic-bezier(.2,.8,.2,1)}
+.progress b{font-family:var(--display);font-weight:400;font-size:24px}
+
+footer{padding-block:40px 64px;color:var(--dim);font-size:13px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+footer a{font-weight:600}
+
+@media (max-width:900px){
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .angles,.ads{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .compete,.sim,.chatwrap{grid-template-columns:minmax(0,1fr)}
+  .rules{grid-template-columns:minmax(0,1fr)}
+  .pipe{grid-template-columns:minmax(0,1fr);gap:0}
+  .link{width:2px;height:28px;margin:0 auto}
+  .link::after{inset-inline-start:-3px;top:0;animation-name:flowv}
+  @keyframes flowv{from{transform:translateY(0)}to{transform:translateY(28px)}}
+}
+@media (max-width:600px){
+  section{padding-block:52px}
+  .angles,.ads,.camps,.aud,.check,.specs,.out{grid-template-columns:minmax(0,1fr)}
+  .rail .logo span{display:none}
+  .bar .seg span{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+
+<header class="rail">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="TASWEEQ">
+      <span>TASWEEQ</span>
+      <svg width="44" height="24" viewBox="0 0 48 26" fill="#00D9F5" aria-hidden="true"><rect x="0" y="1" width="30" height="3.5"/><rect x="5" y="1" width="7" height="17.5"/><circle cx="20" cy="13" r="3"/><circle cx="33" cy="13" r="3"/><path d="M5 23.25H36A10.25 10.25 0 0 0 36 2.75H34" fill="none" stroke="#00D9F5" stroke-width="3.5"/></svg>
+    </a>
+    <nav aria-label="أقسام البلان">
+      <a href="#insight">الانسايت</a>
+      <a href="#structure">الكامبينز</a>
+      <a href="#budget">الميزانية</a>
+      <a href="#audience">الجماهير</a>
+      <a href="#whatsapp">الواتساب</a>
+      <a href="#creatives">الكرييتفز</a>
+      <a href="#kpis">KPIs</a>
+      <a href="#launch">قبل الإطلاق</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="ghost" aria-hidden="true">مو باقة</div>
+    <div class="wrap">
+      <span class="eyebrow">ميديا بلان · ميتا ← واتساب · قطر · الشهر الأول</span>
+      <h1>نبيع <em>علامة</em> مش باقة،<br>والمحادثة تخلص على الواتساب.</h1>
+      <p class="lead">كامبينين Click-to-WhatsApp على فيسبوك وانستجرام، بميزانية صغيرة في الأول. ما بنزوّدش ريال غير لما تكلفة الليد المؤهل تثبت تحت الهدف.</p>
+      <div class="stats">
+        <div class="stat hot"><b class="num"><bdi>3,000</bdi><small>ر.ق</small></b><span>ميزانية الشهر الأول</span></div>
+        <div class="stat"><b class="num"><bdi>100</bdi><small>ر.ق/يوم</small></b><span>80 بروسبكتنج · 20 ريتارجتنج</span></div>
+        <div class="stat"><b class="num"><bdi>15–25</bdi></b><span>ليد مؤهل متوقع</span></div>
+        <div class="stat"><b class="num"><bdi>≤150</bdi><small>ر.ق</small></b><span>هدف تكلفة الليد المؤهل</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="insight">
+    <div class="wrap">
+      <span class="eyebrow">الهدف والانسايت</span>
+      <h2>السوق كله بيبيع باقات على الواتساب.. ومحدش بيثبت شغله.</h2>
+      <div class="compete">
+        <div class="card">
+          <h3>8 من 11 منافس بيودّوا على الواتساب</h3>
+          <div class="dots" aria-label="8 منافسين من 11 بيستخدموا واتساب">
+            <span class="dot wa"><svg viewBox="0 0 24 24" fill="none" stroke="#00D9F5" stroke-width="2.2"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg></span>
+            <span class="dot wa"><svg viewBox="0 0 24 24" fill="none" stroke="#00D9F5" stroke-width="2.2"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg></span>
+            <span class="dot wa"><svg viewBox="0 0 24 24" fill="none" stroke="#00D9F5" stroke-width="2.2"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg></span>
+            <span class="dot wa"><svg viewBox="0 0 24 24" fill="none" stroke="#00D9F5" stroke-width="2.2"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg></span>
+            <span class="dot wa"><svg viewBox="0 0 24 24" fill="none" stroke="#00D9F5" stroke-width="2.2"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg></span>
+            <span class="dot wa"><svg viewBox="0 0 24 24" fill="none" stroke="#00D9F5" stroke-width="2.2"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg></span>
+            <span class="dot wa"><svg viewBox="0 0 24 24" fill="none" stroke="#00D9F5" stroke-width="2.2"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg></span>
+            <span class="dot wa"><svg viewBox="0 0 24 24" fill="none" stroke="#00D9F5" stroke-width="2.2"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg></span>
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          </div>
+          <p style="color:var(--muted);font-size:14px">يعني الواتساب هو الملعب، والفرق هيكون في الرسالة وفي طريقة الرد.</p>
+        </div>
+        <div class="card">
+          <h3>أسعار الباقات من 666 لـ 2,500 ر.ق</h3>
+          <div class="range" aria-hidden="true"><i></i></div>
+          <div class="range-l num"><span><bdi>0</bdi></span><span><bdi>666</bdi></span><span><bdi>2,500</bdi> ر.ق</span></div>
+          <p style="color:var(--muted);font-size:14px;margin-top:14px">بدل ما ننزل في حرب الأسعار، بنبيع نظام: استراتيجية ثم هوية ثم حملات، وبإثبات من شغل حقيقي في قطر والخليج.</p>
+        </div>
+      </div>
+      <div class="grid angles">
+        <article class="card angle"><span class="k">A</span><h3>ضد الباقة</h3><q>14 خدمة بسعر واحد؟</q><p>بتكسر نمط كل إعلانات المنافسين.</p></article>
+        <article class="card angle"><span class="k">B</span><h3>الإثبات</h3><q>هويات بنيناها في قطر</q><p>محدش من المنافسين بيعرض كيس ستادي.</p></article>
+        <article class="card angle"><span class="k">C</span><h3>الألم</h3><q>عندك لوجو.. بس ما عندك هوية</q><p>بتسمّي المشكلة اللي العميل حاسس بيها.</p></article>
+        <article class="card angle"><span class="k">D</span><h3>النيش</h3><q>هوية تتكلم لغة مجالك</q><p>مطاعم، عيادات، عقارات، خيول.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="structure">
+    <div class="wrap">
+      <span class="eyebrow">هيكل الكامبينز</span>
+      <h2>كامبينين بس، والاتنين بيصبّوا في الواتساب.</h2>
+      <p class="lead">الميزانية الصغيرة لو اتفرقت على Ad sets كتير، الأدوات مش هتخلّص مرحلة التعلم. اضغط على الكامبين تشوف إعداداتها.</p>
+      <div class="camps" role="group" aria-label="الكامبينز">
+        <button type="button" class="card camp" id="c1" aria-pressed="true">
+          <div class="top"><b>بروسبكتنج</b><span class="pill num">80 ر.ق/يوم</span></div>
+          <code>TSQ_QA_Prospect_WA</code>
+          <div class="specs">
+            <div class="spec"><small>الهدف</small><span>Engagement</span></div>
+            <div class="spec"><small>التحويل</small><span>WhatsApp</span></div>
+            <div class="spec"><small>البداية</small><span>يوم 1</span></div>
+            <div class="spec"><small>الجمهور</small><span>Advantage+ قطر</span></div>
+            <div class="spec"><small>الإعلانات</small><span>C01 · C02 · C03 · R01 · C05</span></div>
+            <div class="spec"><small>المواضع</small><span>فيد + ريلز + ستوري</span></div>
+          </div>
+        </button>
+        <button type="button" class="card camp" id="c2" aria-pressed="false">
+          <div class="top"><b>ريتارجتنج</b><span class="pill num">20 ر.ق/يوم</span></div>
+          <code>TSQ_QA_Retarget_WA</code>
+          <div class="specs">
+            <div class="spec"><small>الهدف</small><span>Engagement</span></div>
+            <div class="spec"><small>التحويل</small><span>WhatsApp</span></div>
+            <div class="spec"><small>البداية</small><span>يوم 8</span></div>
+            <div class="spec"><small>الجمهور</small><span>تفاعل 60 يوم + مشاهدات + زوار</span></div>
+            <div class="spec"><small>الإعلانات</small><span>C04 · C06</span></div>
+            <div class="spec"><small>الهدف منه</small><span>يقفل اللي اتفرّج ومبعتش</span></div>
+          </div>
+        </button>
+      </div>
+
+      <div class="pipe" aria-label="رحلة الليد من الإعلان للعميل">
+        <div class="node"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#EEF2F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 9h18"/></svg></div><b class="num" id="p-spend">3,000</b><span>ر.ق صرف في الشهر</span></div>
+        <div class="link" aria-hidden="true"></div>
+        <div class="node wa"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#0B0D10" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg></div><b class="num" id="p-conv">250</b><span>محادثة واتساب</span></div>
+        <div class="link l2" aria-hidden="true"></div>
+        <div class="node"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#EEF2F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16l-6 7v6l-4 2v-8z"/></svg></div><b class="num" id="p-qual">25</b><span>ليد مؤهل</span></div>
+        <div class="link l3" aria-hidden="true"></div>
+        <div class="node"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#EEF2F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></div><b class="num" id="p-cli">3</b><span>عميل متوقع</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="budget">
+    <div class="wrap">
+      <span class="eyebrow">الميزانية والمراحل</span>
+      <h2>جرّب الأرقام بنفسك.</h2>
+      <p class="lead">الأرقام الافتراضية هي تقديرنا لسوق قطر. حرّك أي مؤشر، والأرقام هنا وفي رحلة الليد فوق هتتغير معاه. هنثبّتها على الأرقام الحقيقية بعد أسبوعين داتا.</p>
+      <div class="sim">
+        <div class="card ctrl">
+          <div>
+            <label for="s-daily">الميزانية اليومية <output id="o-daily" class="num">100 ر.ق</output></label>
+            <input type="range" id="s-daily" min="50" max="250" step="10" value="100">
+            <div class="hint">البداية 100، والسقف 200 لحد ما الأرقام تثبت</div>
+          </div>
+          <div>
+            <label for="s-cpc">تكلفة المحادثة <output id="o-cpc" class="num">12 ر.ق</output></label>
+            <input type="range" id="s-cpc" min="6" max="30" step="1" value="12">
+            <div class="hint">متوقع 10–15 ر.ق في قطر</div>
+          </div>
+          <div>
+            <label for="s-rate">نسبة التأهيل <output id="o-rate" class="num">10%</output></label>
+            <input type="range" id="s-rate" min="3" max="25" step="1" value="10">
+            <div class="hint">من المحادثات للِّيد المؤهل · الهدف 10% فأكثر</div>
+          </div>
+          <div>
+            <label for="s-close">نسبة الإغلاق <output id="o-close" class="num">12%</output></label>
+            <input type="range" id="s-close" min="5" max="30" step="1" value="12">
+            <div class="hint">افتراض: من الليد المؤهل لعميل موقّع</div>
+          </div>
+          <button type="button" class="reset" id="reset">رجّع الأرقام الافتراضية</button>
+        </div>
+        <div class="card">
+          <div class="out">
+            <div class="o"><small>صرف الشهر</small><b class="num" id="r-spend">3,000 ر.ق</b></div>
+            <div class="o"><small>محادثات</small><b class="num" id="r-conv">250</b></div>
+            <div class="o"><small>ليدز مؤهلة</small><b class="num" id="r-qual">25</b></div>
+            <div class="o"><small>تكلفة الليد المؤهل</small><b class="num" id="r-cpql">120 ر.ق</b></div>
+            <div class="verdict good" id="verdict" role="status"><i></i><span id="v-text">تحت الهدف (150 ر.ق): نقدر نزوّد 20% كل 3 أيام.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl">
+        <div class="bar" aria-label="مراحل الشهرين">
+          <div class="seg s1"><b>التعلم</b><span>100 بروسبكتنج</span></div>
+          <div class="seg s2"><b>التشغيل</b><span>80 بروسبكتنج + 20 ريتارجتنج</span></div>
+          <div class="seg s3"><b>التوسع · شهر 2</b><span>4,500–6,000 ر.ق لو الشرط اتحقق</span></div>
+        </div>
+        <div class="days num"><span>يوم 1–7 · <bdi>700</bdi> ر.ق</span><span>يوم 8–30 · <bdi>2,300</bdi> ر.ق</span><span>يوم 31–60</span></div>
+      </div>
+      <div class="grid rules">
+        <div class="card"><b>أول 7 أيام</b><p>ما نلمسش الميزانية ولا الإعلانات، الأدوات بتتعلم.</p></div>
+        <div class="card"><b>≤ 150 ر.ق لمدة أسبوع</b><p>نزوّد 20% كل 3 أيام لحد 200 ر.ق في اليوم.</p></div>
+        <div class="card"><b>> 250 ر.ق بعد يوم 14</b><p>ما نزوّدش. نغيّر الكرييتف وأول رد على الواتساب.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="audience">
+    <div class="wrap">
+      <span class="eyebrow">الجماهير</span>
+      <h2>قطر كلها، والكرييتف هو اللي بيفلتر.</h2>
+      <p class="lead">السوق حوالي 3 مليون، فالتضييق الزيادة بيغلّي التكلفة. سن 25–55، الجنسين، عربي وإنجليزي.</p>
+      <div class="grid aud">
+        <div class="card">
+          <h3>بروسبكتنج · Advantage+ مع اقتراحات</h3>
+          <div class="chips"><span class="chip">Small business owners</span><span class="chip">Entrepreneurship</span><span class="chip">Business page admins</span><span class="chip">Branding</span><span class="chip">Restaurants</span><span class="chip">Real estate</span></div>
+        </div>
+        <div class="card">
+          <h3>ريتارجتنج · كاستم أوديانس</h3>
+          <div class="chips"><span class="chip">تفاعل الصفحة والانستجرام · 60 يوم</span><span class="chip">شاهدوا 50%+ من R01 · 30 يوم</span><span class="chip">زوار الموقع · 30 يوم</span></div>
+        </div>
+        <div class="card">
+          <h3>استبعاد من الاتنين</h3>
+          <div class="chips"><span class="chip x">بعتوا واتساب آخر 30 يوم</span><span class="chip x">العملاء الحاليين</span></div>
+        </div>
+        <div class="card">
+          <h3>الشهر التاني</h3>
+          <div class="chips"><span class="chip">Lookalike 1% قطر من أول 20 ليد مؤهل</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="whatsapp">
+    <div class="wrap">
+      <span class="eyebrow">إعداد الواتساب والتأهيل</span>
+      <h2>المنافسين بيردّوا بالسعر. إحنا بنسأل الأول.</h2>
+      <div class="chatwrap">
+        <div>
+          <div class="phone" aria-label="مثال لمحادثة واتساب">
+            <div class="phead">
+              <div class="av"><svg width="24" height="13" viewBox="0 0 48 26" fill="#00D9F5" aria-hidden="true"><rect x="0" y="1" width="30" height="3.5"/><rect x="5" y="1" width="7" height="17.5"/><circle cx="20" cy="13" r="3"/><circle cx="33" cy="13" r="3"/><path d="M5 23.25H36A10.25 10.25 0 0 0 36 2.75H34" fill="none" stroke="#00D9F5" stroke-width="3.5"/></svg></div>
+              <div><b>TASWEEQ</b><small>متصل الحين</small></div>
+            </div>
+            <div class="msgs" id="msgs" aria-live="polite"></div>
+          </div>
+          <div class="pctrl" style="justify-content:center">
+            <button type="button" class="btn" id="play">شغّل المحادثة</button>
+            <button type="button" class="btn ghost" id="all">اعرضها كلها</button>
+          </div>
+        </div>
+        <div>
+          <h3 style="margin-bottom:14px">سكريبت أول 5 دقايق</h3>
+          <ol class="steps">
+            <li><span>«حياك الله! عشان نفيدك صح، وش اسم مشروعك ومجاله؟»</span></li>
+            <li><span>«المشروع شغّال ولا بعده في البداية؟ وعندك حساب انستقرام نشوفه؟»</span></li>
+            <li><span>«متى تبي تبدأ، وكم ميزانيتك التقريبية؟ (أقل من 5 آلاف / 5–15 ألف / أكثر)»</span></li>
+            <li><span>«تمام، بنرسل لك تحليل مختصر لعلامتك خلال 24 ساعة، ونحجز مكالمة 15 دقيقة نشرحه.»</span></li>
+          </ol>
+          <div class="qual">
+            <b>الليد المؤهل =</b>
+            <ul>
+              <li>مشروع في قطر</li>
+              <li>ميزانية 5,000 ر.ق فأكثر</li>
+              <li>عايز يبدأ خلال 60 يوم</li>
+            </ul>
+            <p style="color:var(--muted);font-size:13px;margin-top:8px">بنسجله بـ Label في WhatsApp Business (مؤهل / غير مؤهل / عميل) وبيتنقل لشيت يومي.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="creatives">
+    <div class="wrap">
+      <span class="eyebrow">الكرييتفز والكوبي</span>
+      <h2>7 إعلانات، بلهجة خليجية بيضاء.</h2>
+      <p class="lead">النص الأساسي أقل من 125 حرف عشان يبان كامل من غير "عرض المزيد"، والعنوان أقل من 40. التصاميم الكاملة على <a href="https://claude.ai/artifact/MR9xVWAvjEqeRNkHMXvoTo" target="_blank" rel="noopener">كانفاس الكرييتفز</a>.</p>
+      <div class="tabs" role="tablist" aria-label="فلتر الإعلانات">
+        <button type="button" class="tab" role="tab" aria-selected="true" data-f="all">الكل</button>
+        <button type="button" class="tab" role="tab" aria-selected="false" data-f="p">بروسبكتنج</button>
+        <button type="button" class="tab" role="tab" aria-selected="false" data-f="r">ريتارجتنج</button>
+      </div>
+      <div class="grid ads" id="ads"></div>
+    </div>
+  </section>
+
+  <section id="kpis">
+    <div class="wrap">
+      <span class="eyebrow">KPIs وقواعد التحسين</span>
+      <h2>بنحكم بتكلفة الليد المؤهل، مش بتكلفة المحادثة.</h2>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>المؤشر</th><th>الهدف</th><th>إنذار</th></tr></thead>
+          <tbody class="num">
+            <tr class="star"><td class="k">CPQL · تكلفة الليد المؤهل</td><td><span class="g">≤ 150 ر.ق</span></td><td><span class="b">> 250 ر.ق</span></td></tr>
+            <tr><td class="k">CTR (link)</td><td><span class="g">≥ 1.2%</span></td><td><span class="b">< 0.7%</span></td></tr>
+            <tr><td class="k">تكلفة المحادثة</td><td><span class="g">≤ 15 ر.ق</span></td><td><span class="b">> 25 ر.ق</span></td></tr>
+            <tr><td class="k">الرد على أسئلة التأهيل</td><td><span class="g">≥ 50%</span></td><td><span class="b">< 30%</span></td></tr>
+            <tr><td class="k">محادثة ← ليد مؤهل</td><td><span class="g">≥ 10%</span></td><td><span class="b">< 5%</span></td></tr>
+            <tr><td class="k">زمن أول رد</td><td><span class="g">≤ 5 دقايق (9ص–9م)</span></td><td><span class="b">> 30 دقيقة</span></td></tr>
+            <tr><td class="k">Frequency · 7 أيام</td><td><span class="g">≤ 2.5</span></td><td><span class="b">> 3.5</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="grid rules">
+        <div class="card"><b>60 ر.ق ومفيش محادثة</b><p>نوقف الإعلان.</p></div>
+        <div class="card"><b>15 محادثة ومفيش ليد مؤهل</b><p>بيجيب فضوليين: نوقفه أو نعدّل الكوبي.</p></div>
+        <div class="card"><b>الفائز في أسبوع 3</b><p>نعمل منه نسختين بهوك مختلف.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="launch">
+    <div class="wrap">
+      <span class="eyebrow">المتطلبات قبل الإطلاق</span>
+      <h2>منقدرش نطلق قبل أول 3 بنود.</h2>
+      <div class="progress"><div class="tr"><i id="bar"></i></div><b class="num" id="count">0/9</b></div>
+      <div class="grid check" id="check"></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>TASWEEQ · ميديا بلان ميتا ← واتساب · قطر · أكتوبر 2026</span>
+    <span><a href="https://claude.ai/artifact/PNGSWQ6aeje78VscGDDRGH" target="_blank" rel="noopener">البلان كدوك</a> · <a href="https://claude.ai/artifact/MR9xVWAvjEqeRNkHMXvoTo" target="_blank" rel="noopener">الكرييتفز</a></span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var fmt = function(n){ return Math.round(n).toLocaleString('en-US'); };
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- simulator ---------- */
+  var S = { daily: document.getElementById('s-daily'), cpc: document.getElementById('s-cpc'), rate: document.getElementById('s-rate'), close: document.getElementById('s-close') };
+  var defaults = { daily: 100, cpc: 12, rate: 10, close: 12 };
+  var shown = {};
+  function tween(id, to, suffix){
+    var el = document.getElementById(id); if(!el) return;
+    var from = shown[id] == null ? to : shown[id]; shown[id] = to;
+    if(reduce || from === to){ el.textContent = fmt(to) + (suffix||''); return; }
+    var t0 = performance.now(), d = 450;
+    (function step(t){
+      var k = Math.min(1, (t - t0) / d); k = 1 - Math.pow(1 - k, 3);
+      el.textContent = fmt(from + (to - from) * k) + (suffix||'');
+      if(k < 1) requestAnimationFrame(step);
+    })(t0);
+  }
+  function calc(){
+    var daily = +S.daily.value, cpc = +S.cpc.value, rate = +S.rate.value / 100, close = +S.close.value / 100;
+    document.getElementById('o-daily').textContent = daily + ' ر.ق';
+    document.getElementById('o-cpc').textContent = cpc + ' ر.ق';
+    document.getElementById('o-rate').textContent = Math.round(rate*100) + '%';
+    document.getElementById('o-close').textContent = Math.round(close*100) + '%';
+    var spend = daily * 30, conv = spend / cpc, qual = conv * rate, cli = qual * close, cpql = cpc / rate;
+    tween('r-spend', spend, ' ر.ق'); tween('r-conv', conv); tween('r-qual', qual); tween('r-cpql', cpql, ' ر.ق');
+    tween('p-spend', spend); tween('p-conv', conv); tween('p-qual', qual);
+    var pc = document.getElementById('p-cli'); pc.textContent = cli < 1 ? '< 1' : (Math.round(cli*10)/10).toLocaleString('en-US');
+    var v = document.getElementById('verdict'), vt = document.getElementById('v-text');
+    if(cpql <= 150){ v.className = 'verdict good'; vt.textContent = 'تحت الهدف (150 ر.ق): نقدر نزوّد 20% كل 3 أيام.'; }
+    else if(cpql <= 250){ v.className = 'verdict warn'; vt.textContent = 'فوق الهدف: نثبّت الميزانية ونحسّن الكرييتف وسكريبت الرد.'; }
+    else { v.className = 'verdict bad'; vt.textContent = 'منطقة الإنذار (فوق 250 ر.ق): ما نزوّدش، ونغيّر الزاوية.'; }
+  }
+  Object.keys(S).forEach(function(k){ S[k].addEventListener('input', calc); });
+  document.getElementById('reset').addEventListener('click', function(){ Object.keys(defaults).forEach(function(k){ S[k].value = defaults[k]; }); calc(); });
+  calc();
+
+  /* ---------- campaign toggle ---------- */
+  var camps = [document.getElementById('c1'), document.getElementById('c2')];
+  camps.forEach(function(b){ b.addEventListener('click', function(){ camps.forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); }); }); });
+
+  /* ---------- rail highlight ---------- */
+  var links = [].slice.call(document.querySelectorAll('.rail nav a'));
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ links.forEach(function(a){ a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id); }); } });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    document.querySelectorAll('main section[id]').forEach(function(s){ io.observe(s); });
+  }
+
+  /* ---------- whatsapp chat ---------- */
+  var script = [
+    { who:'sys', t:'جاي من إعلان C01 · ضد الباقة' },
+    { who:'them', t:'السلام عليكم، شفت إعلانكم' },
+    { who:'us', t:'هلا والله! معك فريق TASWEEQ. اختر اللي يناسبك ونرد عليك خلال دقايق:', opts:['أبي هوية كاملة لمشروعي','عندي لوجو وأبي أطوّر علامتي','أبي تحليل مجاني لعلامتي'] },
+    { who:'them', t:'أبي هوية كاملة لمشروعي' },
+    { who:'us', t:'حياك الله! عشان نفيدك صح، وش اسم مشروعك ومجاله؟' },
+    { who:'them', t:'مطعم جديد في لوسيل' },
+    { who:'us', t:'متى تبي تبدأ، وكم ميزانيتك التقريبية؟ (أقل من 5 آلاف / 5–15 ألف / أكثر)' },
+    { who:'them', t:'الشهر الجاي، 5–15 ألف' },
+    { who:'us', t:'تمام، بنرسل لك تحليل مختصر لعلامتك خلال 24 ساعة، ونحجز مكالمة 15 دقيقة نشرحه.' },
+    { who:'sys', t:'✓ ليد مؤهل · قطر · 5–15 ألف · خلال 60 يوم' }
+  ];
+  var box = document.getElementById('msgs'), timer = null, run = 0;
+  function bubble(m){
+    var d = document.createElement('div'); d.className = 'm ' + m.who; d.textContent = m.t;
+    if(m.opts){ var o = document.createElement('div'); o.className = 'opts'; m.opts.forEach(function(x){ var s = document.createElement('span'); s.textContent = x; o.appendChild(s); }); d.appendChild(o); }
+    return d;
+  }
+  function showAll(){ clearTimeout(timer); run++; box.innerHTML = ''; script.forEach(function(m){ box.appendChild(bubble(m)); }); }
+  function play(){
+    clearTimeout(timer); var my = ++run; box.innerHTML = ''; var i = 0;
+    (function next(){
+      if(my !== run || i >= script.length) return;
+      var m = script[i++];
+      if(m.who === 'us' && !reduce){
+        var ty = document.createElement('div'); ty.className = 'typing'; ty.innerHTML = '<i></i><i></i><i></i>'; box.appendChild(ty);
+        timer = setTimeout(function(){ if(my !== run) return; ty.remove(); box.appendChild(bubble(m)); timer = setTimeout(next, 700); }, 1100);
+      } else { box.appendChild(bubble(m)); timer = setTimeout(next, reduce ? 0 : 750); }
+    })();
+  }
+  document.getElementById('play').addEventListener('click', play);
+  document.getElementById('all').addEventListener('click', showAll);
+  showAll();
+  if(!reduce && 'IntersectionObserver' in window){
+    var played = false;
+    new IntersectionObserver(function(es, ob){ if(!played && es[0].isIntersecting){ played = true; ob.disconnect(); play(); } }, { threshold: .4 }).observe(box);
+  }
+
+  /* ---------- creatives ---------- */
+  var ads = [
+    { code:'C01', f:'p', fmt:'ستاتيك 4:5 + 9:16', angle:'A · ضد الباقة', shape:'', big:'علامتك تستاهل <em>أكثر من باقة.</em>', primary:'14 خدمة بسعر واحد؟ اللوجو مو هوية، والبوستات مو استراتيجية. نبني علامتك كنظام واحد.', hl:'علامتك تستاهل أكثر من باقة' },
+    { code:'C02', f:'p', fmt:'كاروسيل 7 كروت 1:1', angle:'B · الإثبات', shape:'sq', big:'هويات بنيناها في <em>قطر والخليج</em>', primary:'هذي هويات بنيناها في قطر والخليج من الصفر. اسحب وشوف، وكلّمنا واتساب لو تبي علامتك الجاية هنا.', hl:'هويات بنيناها في قطر' },
+    { code:'C03', f:'p', fmt:'ستاتيك 4:5 + 9:16', angle:'C · الألم', shape:'', big:'عندك لوجو.. بس ما عندك <em>هوية.</em>', primary:'عندك لوجو.. بس الناس ما تتذكرك؟ المشكلة مو بالتصميم، المشكلة إن ما عندك هوية.', hl:'اللوجو بروحه ما يكفي' },
+    { code:'R01', f:'p', fmt:'ريل موشن 15 ث 9:16', angle:'A + B', shape:'st', big:'<em>14</em> خدمة بسعر واحد؟', primary:'مو باقة.. علامة. استراتيجية ثم هوية ثم حملات، وابدأ بتحليل مجاني لعلامتك على الواتساب.', hl:'تحليل علامتك مجاناً' },
+    { code:'C05', f:'p', fmt:'ستاتيك 4:5 · أسبوع 2', angle:'D · النيش', shape:'', big:'هوية تتكلم <em>لغة مجالك.</em>', primary:'مطعم، عيادة، عقار؟ لكل مجال لغة تبيع. نبني هوية تفهم عميلك القطري.', hl:'هوية تتكلم لغة مجالك' },
+    { code:'C04', f:'r', fmt:'ستاتيك 4:5', angle:'العرض', shape:'', big:'الحين دور <em>علامتك.</em>', primary:'شفت شغلنا؟ الحين دور علامتك. ارسل "تحليل" ونرد عليك بتحليل مجاني خلال 24 ساعة.', hl:'ارسل "تحليل" واتساب' },
+    { code:'C06', f:'r', fmt:'ستوري 9:16', angle:'الطريقة', shape:'st', big:'<em>3</em> خطوات بس.', primary:'3 خطوات بس: ترسل لنا، نحلل علامتك، نرسل لك خطة واضحة. بدون التزام.', hl:'كلّمنا واتساب' }
+  ];
+  var grid = document.getElementById('ads');
+  ads.forEach(function(a){
+    var len = [...a.primary].length, hlen = [...a.hl].length;
+    var el = document.createElement('article'); el.className = 'card ad'; el.dataset.f = a.f;
+    el.innerHTML =
+      '<div class="h"><span class="code">' + a.code + '</span><span class="tag' + (a.f==='r'?' rt':'') + '">' + (a.f==='r'?'ريتارجتنج':'بروسبكتنج') + '</span></div>' +
+      '<div class="prev ' + a.shape + '"><span class="fmt">' + a.angle + '</span><div class="t">' + a.big + '</div><span class="cta">كلّمنا واتساب</span></div>' +
+      '<div class="fmt">' + a.fmt + '</div>' +
+      '<p class="copy"></p><p class="hl"></p>' +
+      '<div class="meta num"><span class="' + (len<=125?'ok':'') + '">النص ' + len + '/125</span><span class="' + (hlen<=40?'ok':'') + '">العنوان ' + hlen + '/40</span></div>';
+    el.querySelector('.copy').textContent = a.primary;
+    el.querySelector('.hl').textContent = a.hl;
+    grid.appendChild(el);
+  });
+  var tabs = [].slice.call(document.querySelectorAll('.tab'));
+  tabs.forEach(function(t){ t.addEventListener('click', function(){
+    tabs.forEach(function(x){ x.setAttribute('aria-selected', x === t ? 'true' : 'false'); });
+    var f = t.dataset.f;
+    grid.querySelectorAll('.ad').forEach(function(a){ a.classList.toggle('hide', f !== 'all' && a.dataset.f !== f); });
+  }); });
+
+  /* ---------- checklist ---------- */
+  var items = [
+    { id:'wa', t:'رقم واتساب بيزنس قطري (+974)', s:'مربوط بصفحة الفيسبوك · الرقم الحالي مصري', crit:true },
+    { id:'wab', t:'حساب WhatsApp Business جاهز', s:'لوجو، وصف، ساعات عمل بتوقيت قطر، Labels', crit:true },
+    { id:'resp', t:'مسؤول رد خلال 5 دقايق', s:'من 9ص لـ 9م', crit:true },
+    { id:'imgs', t:'صور الأعمال', s:'مواعيدك وسكن ولووب ونيمو اتركبوا · MH Stud ناقصة', done:true },
+    { id:'logo', t:'اللوجو والفونت', s:'اتطبقوا على كل الكرييتفز والريل', done:true },
+    { id:'mail', t:'إيميل بدومين الشركة', s:'بدل Gmail في العروض والمكالمات' },
+    { id:'pixel', t:'Meta Pixel + Custom audiences', s:'زوار 30 يوم، تفاعل 60 يوم، مشاهدين فيديو 50%' },
+    { id:'sheet', t:'شيت متابعة الليدز', s:'التاريخ، الإعلان، المجال، الميزانية، الحالة، قيمة البيع' },
+    { id:'audit', t:'نموذج "تحليل العلامة المجاني"', s:'صفحة واحدة تتبعت خلال 24 ساعة' }
+  ];
+  var KEY = 'tsq-launch-v1', saved = {};
+  try { saved = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch(e) { saved = {}; }
+  var wrap = document.getElementById('check');
+  function update(){
+    var boxes = wrap.querySelectorAll('input'), n = 0;
+    boxes.forEach(function(b){ if(b.checked) n++; b.closest('.ci').classList.toggle('done', b.checked); });
+    document.getElementById('count').textContent = n + '/' + boxes.length;
+    document.getElementById('bar').style.width = (n / boxes.length * 100) + '%';
+  }
+  items.forEach(function(it){
+    var lab = document.createElement('label'); lab.className = 'card ci'; lab.htmlFor = 'ck-' + it.id;
+    var inp = document.createElement('input'); inp.type = 'checkbox'; inp.id = 'ck-' + it.id;
+    inp.checked = it.id in saved ? !!saved[it.id] : !!it.done;
+    var tx = document.createElement('div'); tx.className = 'tx';
+    var b = document.createElement('b'); b.textContent = it.t;
+    if(it.crit){ var c = document.createElement('span'); c.className = 'crit'; c.textContent = 'شرط الإطلاق'; b.appendChild(c); }
+    var s = document.createElement('small'); s.textContent = it.s;
+    tx.appendChild(b); tx.appendChild(s); lab.appendChild(inp); lab.appendChild(tx); wrap.appendChild(lab);
+    inp.addEventListener('change', function(){ saved[it.id] = inp.checked; try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch(e) {} update(); });
+  });
+  update();
+})();
+</script>
+
+</body></html>
